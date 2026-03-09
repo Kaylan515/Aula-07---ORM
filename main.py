@@ -35,15 +35,23 @@ class Produto(Base):
     # Float = número decimal
     preco = Column(Float)
 
+    # Quantidade em estoque
+    estoque = Column(Integer)
+
+    # Produto ativo ou inativo
+    ativo = Column(Boolean, default=True)
+
     # Método construtor
-    def __init__(self, nome, preco):
+    def __init__(self, nome, preco, estoque, ativo):
         self.nome = nome
         self.preco = preco
+        self.estoque = estoque
+        self.ativo = ativo
     
     #Representação do objeto para imprimir
     def __repr__(self):
-        return f"Produto(id={self.id}, nome='{self.nome}', preco={self.preco})"
-    
+        return f"Produto(id={self.id}, nome={self.nome}, preco={self.preco}, estoque={self.estoque}, ativo={self.ativo})"
+
 # Criar a conexão com sqlite
 # echo=True = log do sql
 engine = create_engine("sqlite:///estoque.db", echo=True)
